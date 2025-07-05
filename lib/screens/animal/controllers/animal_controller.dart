@@ -10,7 +10,7 @@ class AnimalController extends GetxController {
     {'name': 'Dog', 'icon': 'assets/images/dog.png'},
     {'name': 'Lion', 'icon': 'assets/images/lion.png'},
     {'name': 'Elephant', 'icon': 'assets/images/elephan.png'},
-    {'name': 'Tiger', 'icon':  'assets/images/tiger.png'},
+    {'name': 'Tiger', 'icon': 'assets/images/tiger.png'},
     {'name': 'Bear', 'icon': 'assets/images/bear.png'},
     {'name': 'Giraffe', 'icon': 'assets/images/Giraffe.png'},
     {'name': 'Monkey', 'icon': 'assets/images/monkey.png'},
@@ -44,18 +44,12 @@ class AnimalController extends GetxController {
     {'name': 'Cheetah', 'icon': 'assets/images/cheetah.jpeg'},
     {'name': 'Moose', 'icon': 'assets/images/moose.jpeg'},
     {'name': 'Otter', 'icon': 'assets/images/otter.png'},
-
   ].obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   void onShapeClick(String shapeName) {
     Debug.log('Shape clicked: $shapeName');
-
   }
+
   void selectBird(int index) {
     selectedIndex.value = index;
   }

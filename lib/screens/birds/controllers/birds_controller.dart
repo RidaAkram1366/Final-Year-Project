@@ -80,14 +80,8 @@ class BirdsController extends GetxController {
     {'name': 'Butterfly', 'icon': 'assets/images/butterfly.jpeg'},
   ].obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
   void onShapeClick(String shapeName) {
     Debug.log('Shape clicked: $shapeName');
-
   }
 
   void selectBird(int index) {

@@ -36,10 +36,11 @@ class CharacterController extends GetxController {
   Future<void> captureImage() async {
     try {
       isLoading.value = true;
-      final boundary = repaintKey.currentContext?.findRenderObject() as RenderRepaintBoundary;
-      if (boundary == null) throw Exception("RenderRepaintBoundary is null");
+      final boundary = repaintKey.currentContext?.findRenderObject()
+          as RenderRepaintBoundary;
 
-      final image = await boundary.toImage(pixelRatio: 5.0); // Increased resolution
+      final image =
+          await boundary.toImage(pixelRatio: 5.0); // Increased resolution
       final byteData = await image.toByteData(format: ImageByteFormat.png);
       if (byteData != null) {
         final bytes = byteData.buffer.asUint8List();
@@ -64,13 +65,16 @@ class CharacterController extends GetxController {
 
     isLoading.value = true;
     try {
-      final boundary = repaintKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      final boundary = repaintKey.currentContext?.findRenderObject()
+          as RenderRepaintBoundary?;
       if (boundary == null) {
-        Get.snackbar('Error', 'RenderRepaintBoundary is null. Ensure widget is visible.');
+        Get.snackbar('Error',
+            'RenderRepaintBoundary is null. Ensure widget is visible.');
         return;
       }
 
-      final image = await boundary.toImage(pixelRatio: 5.0); // Increased resolution
+      final image =
+          await boundary.toImage(pixelRatio: 5.0); // Increased resolution
       final width = image.width.toDouble();
       final height = image.height.toDouble();
       Debug.log("Captured image dimensions: width = $width, height = $height");
@@ -82,7 +86,7 @@ class CharacterController extends GetxController {
       final inputImage = InputImage.fromBytes(
         bytes: bytes,
         metadata: InputImageMetadata(
-          size: Size(1280, 720),
+          size: const Size(1280, 720),
           rotation: InputImageRotation.rotation0deg,
           format: InputImageFormat.nv21,
           bytesPerRow: 1280 * 4,
@@ -98,8 +102,10 @@ class CharacterController extends GetxController {
         return;
       }
 
-      final detectedText = recognizedText.text.replaceAll(RegExp(r'\s+'), '').toLowerCase();
-      matchValuePercentage.value = calculateMatchPercentage(currentCharacter.value.toLowerCase(), detectedText);
+      final detectedText =
+          recognizedText.text.replaceAll(RegExp(r'\s+'), '').toLowerCase();
+      matchValuePercentage.value = calculateMatchPercentage(
+          currentCharacter.value.toLowerCase(), detectedText);
 
       Get.snackbar(
         'Match Result',
@@ -116,7 +122,7 @@ class CharacterController extends GetxController {
   int levenshteinDistance(String a, String b) {
     final List<List<int>> matrix = List.generate(
       a.length + 1,
-          (i) => List.generate(b.length + 1, (j) => 0),
+      (i) => List.generate(b.length + 1, (j) => 0),
     );
 
     for (int i = 0; i <= a.length; i++) {
@@ -140,7 +146,9 @@ class CharacterController extends GetxController {
 
   double calculateMatchPercentage(String expected, String recognized) {
     int distance = levenshteinDistance(expected, recognized);
-    int maxLength = expected.length > recognized.length ? expected.length : recognized.length;
+    int maxLength = expected.length > recognized.length
+        ? expected.length
+        : recognized.length;
     return (1 - (distance / maxLength)) * 100;
   }
 

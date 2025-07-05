@@ -9,7 +9,8 @@ class KidsLearnTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final KidsLearnTableController controller = Get.put(KidsLearnTableController());
+    final KidsLearnTableController controller =
+        Get.put(KidsLearnTableController());
     return Scaffold(
       appBar: AppBar(
         title: const Text("Learn Tables"),
@@ -34,7 +35,8 @@ class KidsLearnTable extends StatelessWidget {
                 Colors.tealAccent.shade200,
                 Colors.orangeAccent.shade200,
               ];
-              final Color cardColor = cardColors[Random().nextInt(cardColors.length)];
+              final Color cardColor =
+                  cardColors[Random().nextInt(cardColors.length)];
 
               return GestureDetector(
                 onTap: () {
@@ -73,26 +75,33 @@ class KidsLearnTable extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 // Table content lines
-                                ...controller.tables[index].split("\n").map((line) {
-                                  int lineIndex = controller.tables[index].split("\n").indexOf(line);
+                                ...controller.tables[index]
+                                    .split("\n")
+                                    .map((line) {
+                                  int lineIndex = controller.tables[index]
+                                      .split("\n")
+                                      .indexOf(line);
                                   return Obx(() => Text(
-                                    line,
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w600,
-                                      color: lineIndex == controller.currentLineIndex.value
-                                          ? Colors.purple
-                                          : Colors.black,
-                                      letterSpacing: 1.2,
-                                      wordSpacing: 2.0,
-                                    ),
-                                  ));
-                                }).toList(),
+                                        line,
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w600,
+                                          color: lineIndex ==
+                                                  controller
+                                                      .currentLineIndex.value
+                                              ? Colors.purple
+                                              : Colors.black,
+                                          letterSpacing: 1.2,
+                                          wordSpacing: 2.0,
+                                        ),
+                                      ));
+                                }),
                               ],
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, top: 100),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, top: 100),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
